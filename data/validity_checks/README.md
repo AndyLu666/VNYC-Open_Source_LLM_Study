@@ -1,17 +1,16 @@
-# JCDL Validity Strengthening Outputs
+# Validity Check Tables
 
-This folder contains targeted analyses requested by the JCDL-style reviewer:
+This folder contains compact validity and audit-support tables used by the manuscript:
 
 - Wilson 95% confidence intervals for audit-derived proportions.
 - A main-text construct-validity summary.
 - A curator-task rationale for curatability thresholds.
 - Curated failure modes explaining why links, family names, and release statements need typed fields.
-- An internal curator-style schema review sheet over ten adjudicated boundary examples.
+- A curator-style schema review sheet over ten adjudicated boundary examples.
 
-The curator-style review is an internal study-team expert pass and should not be described as a blinded multi-curator reliability study unless a separate external protocol is run.
+The schema review is a study-team expert pass and should not be described as a blinded multi-curator reliability study unless a separate external protocol is run.
 
 ## Files
-- `MANIFEST.csv`
 - `audit_wilson_ci.csv`
 - `construct_validity_main_table.csv`
 - `curatability_threshold_rationale.csv`

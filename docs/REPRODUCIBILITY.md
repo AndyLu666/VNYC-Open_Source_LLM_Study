@@ -1,10 +1,10 @@
-# Reproducibility Notes
+# Reproducibility
 
-This artifact supports reproducibility at the analysis-table and manuscript-figure level. It does not include raw API calls, downloaded PDFs, or private local logs.
+This repository supports reproduction at the analysis-table, figure, and manuscript-source level. The raw web/API collection stage is not rerun from this artifact; instead, the repository provides the derived public-record tables used by the paper and the scripts that regenerate the reported figures and LaTeX tables.
 
 ## Environment
 
-Recommended environment:
+Use Python 3.10 or newer.
 
 ```bash
 python3 -m venv .venv
@@ -12,64 +12,57 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Core dependencies:
+The Python workflow uses `pandas`, `numpy`, and `matplotlib`.
 
-- Python 3.10+
-- pandas
-- numpy
-- matplotlib
+## Artifact Check
 
-Optional for paper compilation:
-
-- TeX Live or TinyTeX
-- `latexmk`
-- `pdflatex`
-- `bibtex`
-
-## Verify Artifact Integrity
+Run:
 
 ```bash
 python scripts/verify_artifact.py
 ```
 
-This checks that expected data files, scripts, and paper assets are present and that no placeholder citation keys remain in the paper source.
+The check verifies that expected data, manuscript, figure, and script files are present; that key tables have the expected number of rows; that released-file checksums match `MANIFEST.csv`; and that common placeholder or local-path markers are absent.
 
-## Regenerate Figures and Tables
+Expected key counts:
+
+- `jcdl_metadata_completeness_repo_level.csv`: 191,375 repository records
+- `jcdl_paper_curatability_paper_level.csv`: 2,214 paper records
+- `jcdl_provenance_sufficiency_paper_level.csv`: 2,214 paper records
+- `jcdl_release_package_completeness_paper_level.csv`: 2,214 paper records
+
+## Regenerating Figures and Tables
+
+Run:
 
 ```bash
 python scripts/make_figures_tables.py
 ```
 
-The script reads the CSVs under `data/derived/database/` and writes figures/tables into:
+The script reads the released tables under `data/` and writes:
 
-- `paper/figures/`
-- `paper/tables/`
+- manuscript figures to `paper/figures/`;
+- main manuscript tables to `paper/tables/`;
+- supporting generated tables to `paper/tables/supplementary/`.
 
-The final manuscript currently uses:
+The manuscript uses the following figure files:
 
 - `paper/figures/fig1_overview_gpt_image2_icon_polished_library_crop.png`
 - `paper/figures/fig2_metadata_completeness.pdf`
 - `paper/figures/fig3_provenance_alignment.pdf`
 - `paper/figures/fig4_release_curatability.pdf`
 
-## Compile the Paper
+## Compiling the Manuscript
+
+The manuscript source is in `paper/`.
 
 ```bash
 cd paper
 latexmk -pdf -interaction=nonstopmode main.tex
 ```
 
-The paper is configured with the anonymous ACM format.
+The source uses the anonymous ACM format and a local copy of the ACM reference style.
 
-## Scope of Reproducibility
+## Manifest
 
-The public artifact is designed to reproduce:
-
-- Main result tables.
-- Manuscript figures.
-- Integrated curatability thresholds.
-- Audit interval summaries.
-- Construct-validity and failure-mode support tables.
-
-It does not reproduce from raw web/API collection because those stages require external services, platform snapshots, and intermediate files that are large or not appropriate for anonymous review release. The included tables are the analysis-ready outputs used by the manuscript.
-
+`MANIFEST.csv` records each released file, its artifact role, byte size, and SHA-256 checksum. It can be used to verify that an anonymous mirror preserves the same file set.

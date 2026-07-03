@@ -16,11 +16,19 @@ from matplotlib.patches import FancyBboxPatch, Rectangle
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
-DATA = ROOT / "data/derived/database/19_jcdl_revision"
-WWWDATA = ROOT / "data/derived/database/16_www_revision"
-VALID18 = ROOT / "data/derived/database/18_www_reviewer_requested_validations"
+DATA = ROOT / "data/main_analysis"
+WWWDATA = ROOT / "data/sensitivity_checks"
+VALID18 = ROOT / "data/audit_support"
 FIG = PAPER / "figures"
 TAB = PAPER / "tables"
+SUPP_TAB = TAB / "supplementary"
+
+MAIN_TABLES = {
+    "table_study_design.tex",
+    "table_audit_wilson_ci.tex",
+    "table_key_results.tex",
+    "table_minimal_curatable_record.tex",
+}
 
 DUKE_NAVY = "#012169"
 DUKE_ROYAL = "#00539B"
@@ -126,6 +134,13 @@ def label_hbars(ax, values, y_positions, xpad=1.0, fontsize=11, color=DARK) -> N
 def ensure_dirs() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
     TAB.mkdir(parents=True, exist_ok=True)
+    SUPP_TAB.mkdir(parents=True, exist_ok=True)
+
+
+def table_path(filename: str) -> Path:
+    if filename in MAIN_TABLES:
+        return TAB / filename
+    return SUPP_TAB / filename
 
 
 def clean_label(text: str) -> str:
@@ -311,78 +326,6 @@ def draw_centered_funnel(ax, labels, values, colors, max_percent, title, counts=
     ax.set_xlim(-max_width / 2 - 2.8, max_width / 2 + 2.2)
     ax.set_ylim(-0.75, n - 0.1)
     ax.set_title(title, fontsize=10.5, fontweight="bold", loc="left", color=DUKE_NAVY)
-
-
-def draw_pipeline() -> None:
-    fig, ax = plt.subplots(figsize=(15.8, 5.4))
-    ax.set_xlim(0, 16.2)
-    ax.set_ylim(0, 5.7)
-    ax.axis("off")
-
-    def box(x, y, w, h, title, body, color, edge=DUKE_NAVY, fontsize=8.2, title_size=9.6):
-        patch = FancyBboxPatch(
-            (x, y),
-            w,
-            h,
-            boxstyle="round,pad=0.02,rounding_size=0.08",
-            facecolor=color,
-            edgecolor=edge,
-            linewidth=1.4,
-        )
-        ax.add_patch(patch)
-        ax.text(x + 0.14, y + h - 0.18, title, fontsize=title_size, fontweight="bold", color=DARK, va="top")
-        ax.text(
-            x + 0.14,
-            y + h - 0.62,
-            "\n".join(textwrap.wrap(body, max(16, int(w * 12)))),
-            fontsize=fontsize,
-            color=DARK,
-            va="top",
-        )
-
-    headers = [
-        (0.25, "Public record sources"),
-        (3.3, "Evidence extracted"),
-        (6.45, "Curation questions"),
-        (13.05, "Checks"),
-    ]
-    for x, label in headers:
-        ax.text(x, 5.35, label, fontsize=11, fontweight="bold", color=DUKE_NAVY)
-
-    box(0.25, 3.55, 2.35, 1.1, "Model-hub records", "191,375 HF repository records", "#DDEBFA")
-    box(0.25, 1.55, 2.35, 1.1, "Scholarly records", "2,729 paper records; 2,214 main-analysis records", "#E5F3F2")
-
-    evidence = [
-        (3.25, 4.00, "Artifact fields", "role, variant, owner, tags"),
-        (3.25, 2.85, "Paper links", "HF/GitHub links; paper backlinks"),
-        (3.25, 1.70, "Provenance signals", "upstream fields; family evidence"),
-        (3.25, 0.55, "Release signals", "code, weights, adapters, data"),
-    ]
-    for x, y, title, body in evidence:
-        box(x, y, 2.4, 0.92, title, body, "#F2F6FC", fontsize=7.1, title_size=8.8)
-
-    questions = [
-        ("RQ1", "Artifact identity"),
-        ("RQ2", "Bibliographic linkage"),
-        ("RQ3", "Provenance sufficiency"),
-        ("RQ4", "Release package"),
-        ("RQ5", "Curation readiness"),
-    ]
-    q_colors = ["#DDEBFA", "#D8EEF3", "#D9EFEA", "#F4E3CD", "#EEF0F5"]
-    for i, ((rq, label), color) in enumerate(zip(questions, q_colors)):
-        x = 6.15 + i * 1.25
-        box(x, 2.05, 1.12, 1.62, rq, label, color, fontsize=6.8, title_size=8.8)
-
-    box(13.0, 3.55, 2.45, 1.1, "Expert audits", "300 repository-role rows; 200 lineage rows; 50 release rows", "#F7F2E8")
-    box(13.0, 1.55, 2.45, 1.1, "Sensitivity checks", "query buckets, alignment methods, rubric thresholds", "#EEF0F5")
-
-    for y in [4.1, 2.1]:
-        ax.annotate("", xy=(3.1, y), xytext=(2.62, y), arrowprops=dict(arrowstyle="->", lw=1.35, color=DARK))
-    for y in [4.46, 3.31, 2.16, 1.01]:
-        ax.annotate("", xy=(6.18, 2.85), xytext=(5.63, y), arrowprops=dict(arrowstyle="->", lw=1.05, color="#4B5563"))
-    ax.annotate("", xy=(12.9, 4.1), xytext=(12.45, 3.1), arrowprops=dict(arrowstyle="->", lw=1.2, color=DARK))
-    ax.annotate("", xy=(12.9, 2.1), xytext=(12.45, 3.1), arrowprops=dict(arrowstyle="->", lw=1.2, color=DARK))
-    savefig("fig1_pipeline")
 
 
 def draw_metadata_completeness() -> None:
@@ -771,7 +714,7 @@ def make_table_curation_functions() -> None:
     for row in rows:
         tex.append(" & ".join(row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_curation_functions.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_curation_functions.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_study_design() -> None:
@@ -798,7 +741,7 @@ def make_table_study_design() -> None:
     for row in rows:
         tex.append(" & ".join(v if "\\" in v or "$" in v else latex_escape(v) for v in row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\renewcommand{\arraystretch}{1.0}", r"\end{table*}", ""]
-    (TAB / "table_study_design.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_study_design.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_key_results() -> None:
@@ -836,7 +779,7 @@ def make_table_key_results() -> None:
     for row in threshold_rows:
         tex.append(" & ".join(v if "\\" in v else latex_escape(v) for v in row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular*}", r"\renewcommand{\arraystretch}{1.0}", r"\end{table*}", ""]
-    (TAB / "table_key_results.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_key_results.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_reproducibility_workflow() -> None:
@@ -879,7 +822,7 @@ def make_table_reproducibility_workflow() -> None:
     for bucket, terms in query_terms.items():
         tex.append(rf"\multicolumn{{1}}{{p{{0.16\linewidth}}}}{{{latex_escape(bucket)}}} & \multicolumn{{3}}{{p{{0.78\linewidth}}}}{{{latex_escape(terms)}}} \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_reproducibility_workflow.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_reproducibility_workflow.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_validation_layers() -> None:
@@ -904,7 +847,7 @@ def make_table_validation_layers() -> None:
     for row in rows:
         tex.append(" & ".join(latex_escape(v) for v in row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_validation_layers.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_validation_layers.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_curatability_components() -> None:
@@ -946,7 +889,7 @@ def make_table_curatability_components() -> None:
             + r" \\"
         )
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_curatability_components.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_curatability_components.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_metadata_schema() -> None:
@@ -973,7 +916,7 @@ def make_table_metadata_schema() -> None:
     for row in rows:
         tex.append(" & ".join(latex_escape(v) for v in row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_metadata_schema.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_metadata_schema.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_metadata_completeness() -> None:
@@ -1021,7 +964,7 @@ def make_table_metadata_completeness() -> None:
             + r" \\"
         )
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_metadata_completeness.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_metadata_completeness.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_role_audit() -> None:
@@ -1047,7 +990,7 @@ def make_table_role_audit() -> None:
     for row in rows:
         tex.append(" & ".join(latex_escape(v) for v in row) + r" \\")
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_role_audit.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_role_audit.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_query_sensitivity() -> None:
@@ -1078,7 +1021,7 @@ def make_table_query_sensitivity() -> None:
             + r" \\"
         )
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_query_sensitivity.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_query_sensitivity.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_construct_validity() -> None:
@@ -1116,7 +1059,7 @@ def make_table_construct_validity() -> None:
             + r" \\"
         )
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_construct_validity.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_construct_validity.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_table_crosswalk() -> None:
@@ -1153,7 +1096,7 @@ def make_table_crosswalk() -> None:
             + r" \\"
         )
     tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-    (TAB / "table_crosswalk.tex").write_text("\n".join(tex), encoding="utf-8")
+    table_path("table_crosswalk.tex").write_text("\n".join(tex), encoding="utf-8")
 
 
 def make_appendix_tables() -> None:
@@ -1237,7 +1180,7 @@ def make_appendix_tables() -> None:
         for _, r in df.iterrows():
             tex.append(" & ".join(latex_escape(v) for v in r.tolist()) + r" \\")
         tex += [r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""]
-        (TAB / filename).write_text("\n".join(tex), encoding="utf-8")
+        table_path(filename).write_text("\n".join(tex), encoding="utf-8")
 
 
 def main() -> None:
@@ -1251,7 +1194,6 @@ def main() -> None:
             "ps.fonttype": 42,
         }
     )
-    draw_pipeline()
     draw_metadata_completeness()
     draw_provenance_alignment()
     draw_release_curatability()

@@ -1,8 +1,0 @@
-file,bytes,purpose
-20_jcdl_validity_strengthening/MANIFEST.csv,730,JCDL validity strengthening output
-20_jcdl_validity_strengthening/audit_wilson_ci.csv,2131,JCDL validity strengthening output
-20_jcdl_validity_strengthening/construct_validity_main_table.csv,2555,JCDL validity strengthening output
-20_jcdl_validity_strengthening/curatability_threshold_rationale.csv,1348,JCDL validity strengthening output
-20_jcdl_validity_strengthening/curator_schema_review_cases_10.csv,5728,JCDL validity strengthening output
-20_jcdl_validity_strengthening/curator_schema_review_summary.csv,728,JCDL validity strengthening output
-20_jcdl_validity_strengthening/failure_modes_curated_for_jcdl.csv,6179,JCDL validity strengthening output

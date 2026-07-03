@@ -1,36 +1,23 @@
-# Anonymized Review Notes
+# Anonymous Review Notes
 
-This repository is prepared for double-blind peer review.
+The repository is prepared as a double-blind review artifact for the accompanying manuscript.
 
-## Anonymization Choices
+## Release Form
 
-- Author names and affiliations are not included in the paper source.
-- Local machine paths and private workspace names are excluded from released documentation.
-- `.env` files, API keys, credentials, raw logs, and private review-stage notes are excluded.
-- Internal drafting folders, venue-planning notes, and older IP&M/WWW paper variants are excluded.
+The paper source uses the anonymous ACM/JCDL template. The repository-level documentation avoids author names, affiliations, local workspace paths, and personal identifiers. Commit metadata in the prepared artifact uses a generic author identity.
 
-## Recommended Anonymous Hosting
+## Sharing During Review
 
-If the repository is hosted on a public GitHub account, reviewers may see the account owner. For double-blind review, mirror this repository through an anonymous hosting service such as:
+If the artifact is shared with reviewers, mirror the repository through an anonymous hosting service such as:
 
-- https://anonymous.4open.science/
+```text
+https://anonymous.4open.science/
+```
 
-## What Reviewers Can Inspect
+A direct GitHub URL can reveal the account owner even when the files themselves are anonymized.
 
-Reviewers can inspect:
+## Scope for Reviewers
 
-- The analysis-ready data tables.
-- The table/figure generation scripts.
-- The anonymized manuscript source.
-- The audit and construct-validity summary tables.
-- The data dictionary and reproducibility instructions.
+Reviewers can inspect the analysis-ready CSV tables, the figure/table generation script, the manuscript source, and the documentation under `docs/`. The release is intended to make the reported measurements and curation-readiness constructs auditable from the derived data products.
 
-## What Reviewers Should Not Infer
-
-The repository contains derived public-record tables and expert-audit summaries. It should not be interpreted as:
-
-- A complete census of all Hugging Face repositories.
-- A release of raw model files or downloaded paper PDFs.
-- A full reconstruction of private model genealogy.
-- A blinded multi-curator reliability package.
-
+The artifact should not be read as a full raw data dump, a full Hugging Face platform census, a release of model files, or a blinded multi-curator reliability package.

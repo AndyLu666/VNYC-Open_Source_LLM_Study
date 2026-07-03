@@ -1,8 +1,8 @@
-# JCDL Revision Output Summary
+# Main Analysis Tables
 
-This directory contains lightweight analyses for reframing the paper as a JCDL submission about curatable AI artifact infrastructure.
+This directory contains the primary analysis-ready tables used by the manuscript. The files support the paper's repository-level metadata measurements, paper-level curatability measurements, provenance and release-evidence summaries, paper-repository alignment results, and claim-support ledgers.
 
-## Key Preliminary Findings
+## Main Reported Measurements
 
 ### Metadata completeness
 - Stable repository id: 100.0% (broadly available in the snapshot).
@@ -19,7 +19,7 @@ This directory contains lightweight analyses for reframing the paper as a JCDL s
 - General tag record: 100.0% (broadly available in the snapshot).
 - License tag signal: 46.8% (sparse; useful where present but not collection-wide).
 
-### Release package completeness
+### Release-package evidence
 - Score 0 / no_explicit_release_signal: 32.8% of main-analysis papers.
 - Score 1 / stated_or_incomplete_release_signal: 31.3% of main-analysis papers.
 - Score 2 / code_or_scripts_or_recipe: 24.3% of main-analysis papers.
@@ -42,7 +42,7 @@ This directory contains lightweight analyses for reframing the paper as a JCDL s
 - strict_unique_primary_support: 56 (28.0% of audited rows.)
 - usable_family_signal_support: 158 (79.0% of audited rows.)
 
-### Integrated curatability
+### Integrated curation readiness
 - 1_high_curatability: 6.1% (records support provenance, concrete release assets, and at least one paper-repository link signal).
 - 2_operational_curatability: 12.0% (records support usable provenance and concrete code/recipe or stronger release evidence).
 - 3_partial_curatability: 72.6% (records expose at least one useful signal but lack a complete curation package).
@@ -55,6 +55,6 @@ This directory contains lightweight analyses for reframing the paper as a JCDL s
 - Reuse and preservation readiness: any release/open-asset signal 67.2%; concrete code/asset signal 35.8%; strict full package 4.5%
 - Integrated curatability: high curatability 6.1% jointly satisfies provenance, concrete release, and link criteria; high or operational curatability 18.1% under the operational rubric
 
-## Writing Implication
+## Notes
 
-The JCDL manuscript should foreground metadata completeness, provenance sufficiency, and release-package completeness. The old WWW artifact ecology results should become supporting evidence, not the main storyline. Use curatability as the organizing concept: public records make open LLM artifacts visible, but only partly support identity, bibliographic control, provenance, reuse, and preservation.
+Repository-level percentages use 191,375 scoped Hugging Face repository records. Paper-level percentages use 2,214 main-analysis paper records unless a table states a different denominator. Audit-derived values are calibration checks and should not be interpreted as corpus prevalence estimates.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Sanity checks for the anonymized review artifact."""
+"""Sanity checks for the review artifact."""
 
 from __future__ import annotations
 
 import csv
+import hashlib
 import sys
 from pathlib import Path
 
@@ -33,21 +34,23 @@ REQUIRED_FILES = [
     "paper/figures/fig3_provenance_alignment.pdf",
     "paper/figures/fig4_release_curatability.pdf",
     "scripts/make_figures_tables.py",
-    "data/derived/database/19_jcdl_revision/jcdl_metadata_completeness_repo_level.csv",
-    "data/derived/database/19_jcdl_revision/jcdl_paper_curatability_paper_level.csv",
-    "data/derived/database/19_jcdl_revision/jcdl_provenance_sufficiency_paper_level.csv",
-    "data/derived/database/19_jcdl_revision/jcdl_release_package_completeness_paper_level.csv",
-    "data/derived/database/19_jcdl_revision/jcdl_paper_repo_alignment_edges.csv",
-    "data/derived/database/20_jcdl_validity_strengthening/audit_wilson_ci.csv",
-    "data/derived/database/20_jcdl_validity_strengthening/construct_validity_main_table.csv",
-    "data/derived/database/20_jcdl_validity_strengthening/failure_modes_curated_for_jcdl.csv",
+    "data/main_analysis/jcdl_metadata_completeness_repo_level.csv",
+    "data/main_analysis/jcdl_paper_curatability_paper_level.csv",
+    "data/main_analysis/jcdl_provenance_sufficiency_paper_level.csv",
+    "data/main_analysis/jcdl_release_package_completeness_paper_level.csv",
+    "data/main_analysis/jcdl_paper_repo_alignment_edges.csv",
+    "data/validity_checks/audit_wilson_ci.csv",
+    "data/validity_checks/construct_validity_main_table.csv",
+    "data/validity_checks/failure_modes_curated_for_jcdl.csv",
+    "data/sensitivity_checks/hf_query_bucket_leave_one_out.csv",
+    "data/audit_support/hf_repo_artifact_typing_precision.csv",
 ]
 
 EXPECTED_ROWS = {
-    "data/derived/database/19_jcdl_revision/jcdl_metadata_completeness_repo_level.csv": 191_375,
-    "data/derived/database/19_jcdl_revision/jcdl_paper_curatability_paper_level.csv": 2_214,
-    "data/derived/database/19_jcdl_revision/jcdl_provenance_sufficiency_paper_level.csv": 2_214,
-    "data/derived/database/19_jcdl_revision/jcdl_release_package_completeness_paper_level.csv": 2_214,
+    "data/main_analysis/jcdl_metadata_completeness_repo_level.csv": 191_375,
+    "data/main_analysis/jcdl_paper_curatability_paper_level.csv": 2_214,
+    "data/main_analysis/jcdl_provenance_sufficiency_paper_level.csv": 2_214,
+    "data/main_analysis/jcdl_release_package_completeness_paper_level.csv": 2_214,
 }
 
 FORBIDDEN_NAMES = {".env", ".DS_Store"}
@@ -68,6 +71,9 @@ TEXT_SUFFIXES = {
     ".tex",
     ".txt",
 }
+IGNORED_DIRS = {".git", ".venv", "__pycache__"}
+IGNORED_SUFFIXES = {".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".synctex.gz"}
+MANIFEST = ROOT / "MANIFEST.csv"
 
 
 def count_csv_rows(path: Path) -> int:
@@ -84,6 +90,63 @@ def is_text_file(path: Path) -> bool:
     return path.suffix.lower() in TEXT_SUFFIXES
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def should_manifest(path: Path) -> bool:
+    rel = path.relative_to(ROOT).as_posix()
+    if path == MANIFEST:
+        return False
+    if any(part in IGNORED_DIRS for part in path.relative_to(ROOT).parts):
+        return False
+    if path.name == ".DS_Store":
+        return False
+    return not any(rel.endswith(suffix) for suffix in IGNORED_SUFFIXES)
+
+
+def check_manifest(errors: list[str]) -> None:
+    if not MANIFEST.exists():
+        errors.append("missing required file: MANIFEST.csv")
+        return
+
+    with MANIFEST.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        required_columns = {"path", "role", "bytes", "sha256"}
+        if set(reader.fieldnames or []) != required_columns:
+            errors.append("MANIFEST.csv must have columns: path, role, bytes, sha256")
+            return
+        rows = list(reader)
+
+    manifest_paths = {row["path"] for row in rows}
+    actual_paths = {
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.rglob("*")
+        if path.is_file() and should_manifest(path)
+    }
+
+    for rel in sorted(manifest_paths - actual_paths):
+        errors.append(f"manifest lists missing file: {rel}")
+    for rel in sorted(actual_paths - manifest_paths):
+        errors.append(f"file missing from manifest: {rel}")
+
+    for row in rows:
+        rel = row["path"]
+        path = ROOT / rel
+        if not path.exists() or not path.is_file():
+            continue
+        size = path.stat().st_size
+        if str(size) != row["bytes"]:
+            errors.append(f"manifest byte mismatch for {rel}: expected {row['bytes']}, observed {size}")
+        observed_hash = sha256_file(path)
+        if observed_hash != row["sha256"]:
+            errors.append(f"manifest sha256 mismatch for {rel}")
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -98,6 +161,8 @@ def main() -> int:
             observed = count_csv_rows(path)
             if observed != expected:
                 errors.append(f"row-count mismatch for {rel}: expected {expected}, observed {observed}")
+
+    check_manifest(errors)
 
     for path in ROOT.rglob("*"):
         rel = path.relative_to(ROOT).as_posix()
@@ -122,7 +187,7 @@ def main() -> int:
         return 1
 
     print("Artifact verification passed.")
-    print("Checked required files, key row counts, and common anonymization markers.")
+    print("Checked required files, key row counts, manifest checksums, and common anonymization markers.")
     for rel, expected in EXPECTED_ROWS.items():
         print(f"- {rel}: {expected:,} rows")
     return 0

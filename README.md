@@ -1,58 +1,55 @@
 # Open Source LLM Study
 
-This repository contains the anonymized code and analysis-ready data for the paper:
+This repository provides the research artifact for the paper:
 
 **From Visibility to Curatability: Metadata, Provenance, and Release Evidence for Compact and Derived Open LLM Artifacts**
 
-The study treats compact and derived open LLM artifacts as distributed scholarly objects. It asks whether public records across model hubs, scholarly papers, model cards, code links, release statements, and provenance signals provide enough evidence for digital-library curation.
+The project studies compact and derived open LLM artifacts as distributed scholarly objects. Instead of treating a model repository as a complete record by itself, the analysis links model-hub metadata, scholarly paper records, paper-side repository links, upstream model evidence, release statements, and model-card traces. The central question is whether these public records provide enough structured evidence for digital-library curation: artifact identity, scholarly linkage, provenance evidence, release-package evidence, and integrated curation readiness.
 
-## Repository Layout
+## Repository Structure
 
 ```text
 .
 ├── data/
-│   └── derived/database/
-│       ├── 19_jcdl_revision/              # Main analysis tables used by the paper
-│       ├── 20_jcdl_validity_strengthening/ # Audit intervals, failure modes, threshold rationale
-│       ├── 16_www_revision/               # Minimal query-sensitivity support table
-│       └── 18_www_reviewer_requested_validations/
-│           └── hf_repo_artifact_typing_precision.csv
+│   ├── main_analysis/          # Main repository-level and paper-level analysis tables
+│   ├── validity_checks/        # Audit intervals, construct checks, and curated failure modes
+│   ├── sensitivity_checks/     # Snapshot-scope sensitivity support
+│   └── audit_support/          # Balanced repository-role audit support
 ├── docs/
 │   ├── DATA_DICTIONARY.md
+│   ├── DATA_STATEMENT.md
 │   ├── REPRODUCIBILITY.md
-│   ├── ANONYMIZED_REVIEW.md
-│   └── DATA_STATEMENT.md
+│   └── ANONYMIZED_REVIEW.md
 ├── paper/
 │   ├── main.tex
 │   ├── sections/
-│   ├── tables/
-│   └── figures/
+│   ├── figures/
+│   └── tables/
 ├── scripts/
 │   ├── make_figures_tables.py
 │   └── verify_artifact.py
+├── MANIFEST.csv
 ├── requirements.txt
-└── MANIFEST.csv
+└── LICENSE
 ```
 
-## What Is Included
+## Main Entry Points
 
-- Analysis-ready repository-level and paper-level CSV tables.
-- Audit and validity-strengthening tables used to support the measurement design.
-- Figure and table generation code for the manuscript's core visual results.
-- An anonymized LaTeX manuscript source snapshot with final tables and figures.
-- A file manifest with SHA-256 hashes for integrity checking.
+For most readers, the following files are the best starting points:
 
-## What Is Not Included
+- `docs/DATA_DICTIONARY.md`: describes the released tables, units of analysis, and denominators.
+- `docs/REPRODUCIBILITY.md`: gives the commands for checking the artifact and regenerating manuscript figures/tables.
+- `data/main_analysis/`: contains the main repository-level and paper-level analysis tables.
+- `data/validity_checks/`: contains audit intervals, construct-validity mappings, threshold rationales, and curated failure-mode cases.
+- `data/sensitivity_checks/`: contains the query-bucket sensitivity table used to document snapshot scope.
+- `data/audit_support/`: contains balanced repository-role audit support used by the manuscript figures.
+- `scripts/make_figures_tables.py`: regenerates the paper figures and LaTeX tables from the released CSVs.
+- `scripts/verify_artifact.py`: checks required files, key row counts, manifest checksums, and common anonymization issues.
+- `MANIFEST.csv`: records file paths, roles, byte sizes, and SHA-256 checksums.
 
-- API keys, `.env` files, local logs, or private credentials.
-- Raw LLM API prompts/outputs.
-- Downloaded PDFs and OCR/GROBID intermediates.
-- Internal drafting notes, review conversations, and venue-planning notes.
-- Full raw Hugging Face/source snapshots that are large or close to GitHub file-size limits.
+The paper source is included under `paper/`. The main manuscript tables are in `paper/tables/`; supporting generated tables are in `paper/tables/supplementary/`.
 
-The released CSVs are the analysis-ready public-record tables needed to inspect the paper's reported claims and regenerate the main paper tables/figures.
-
-## Quick Start
+## Quick Reproduction Check
 
 ```bash
 python3 -m venv .venv
@@ -63,29 +60,19 @@ python scripts/verify_artifact.py
 python scripts/make_figures_tables.py
 ```
 
-To compile the paper source, use a TeX distribution with `pdflatex`, `bibtex`, and `latexmk`:
+To compile the manuscript source:
 
 ```bash
 cd paper
 latexmk -pdf -interaction=nonstopmode main.tex
 ```
 
-## Main Data Products
+## Data Scope
 
-The paper's primary empirical claims are supported by:
+The released files are analysis-ready tables derived from a fixed May 2026 public-record snapshot. Repository-level percentages use 191,375 scoped Hugging Face repository records. Paper-level percentages use 2,214 main-analysis paper records unless otherwise stated. Audit-derived statistics use their own audit sample sizes and are reported as calibration checks rather than corpus prevalence estimates.
 
-- `data/derived/database/19_jcdl_revision/jcdl_metadata_completeness_repo_level.csv`
-- `data/derived/database/19_jcdl_revision/jcdl_paper_curatability_paper_level.csv`
-- `data/derived/database/19_jcdl_revision/jcdl_provenance_sufficiency_paper_level.csv`
-- `data/derived/database/19_jcdl_revision/jcdl_release_package_completeness_paper_level.csv`
-- `data/derived/database/19_jcdl_revision/jcdl_paper_repo_alignment_edges.csv`
-- `data/derived/database/20_jcdl_validity_strengthening/audit_wilson_ci.csv`
-- `data/derived/database/20_jcdl_validity_strengthening/construct_validity_main_table.csv`
-- `data/derived/database/20_jcdl_validity_strengthening/failure_modes_curated_for_jcdl.csv`
+The repository is designed to support inspection of the paper's reported measurements and to regenerate the main figures and tables. It does not attempt to distribute raw model files, downloaded PDFs, private local logs, or raw API transcripts. See `docs/DATA_STATEMENT.md` for details.
 
-See [docs/DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) for details.
+## Review and Anonymity
 
-## Anonymized Review
-
-This repository is prepared for double-blind review. The files intentionally avoid author names, institutional paths, and private credentials. If using a public GitHub repository during review, we recommend mirroring it through an anonymous hosting service such as [anonymous.4open.science](https://anonymous.4open.science/).
-
+The manuscript source is configured for anonymous ACM/JCDL review. When sharing this repository during a double-blind review process, use an anonymous mirror such as `anonymous.4open.science` rather than a personally identifying GitHub URL. See `docs/ANONYMIZED_REVIEW.md` for the release notes used for review.

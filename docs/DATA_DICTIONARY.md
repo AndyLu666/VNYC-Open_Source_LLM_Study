@@ -4,7 +4,7 @@ This document explains the analysis-ready data files released with the artifact.
 
 ## Main Analysis Tables
 
-Path: `data/derived/database/19_jcdl_revision/`
+Path: `data/main_analysis/`
 
 ### Repository-Level Metadata
 
@@ -96,7 +96,7 @@ Path: `data/derived/database/19_jcdl_revision/`
 
 ## Validity-Strengthening Tables
 
-Path: `data/derived/database/20_jcdl_validity_strengthening/`
+Path: `data/validity_checks/`
 
 - `audit_wilson_ci.csv`
   - Wilson 95% confidence intervals for audit-derived proportions.
@@ -118,10 +118,10 @@ Path: `data/derived/database/20_jcdl_validity_strengthening/`
 
 ## Minimal Supporting Tables
 
-- `data/derived/database/16_www_revision/hf_query_bucket_leave_one_out.csv`
+- `data/sensitivity_checks/hf_query_bucket_leave_one_out.csv`
   - Query-bucket sensitivity table retained because the JCDL paper scopes the repository snapshot as query-based.
 
-- `data/derived/database/18_www_reviewer_requested_validations/hf_repo_artifact_typing_precision.csv`
+- `data/audit_support/hf_repo_artifact_typing_precision.csv`
   - Balanced artifact-role audit table used for Figure 2 panel (b).
 
 ## Denominators
@@ -129,4 +129,3 @@ Path: `data/derived/database/20_jcdl_validity_strengthening/`
 - Repository-level percentages use `191,375` scoped Hugging Face repository records.
 - Paper-level percentages use `2,214` main-analysis paper records unless otherwise stated.
 - Audit-derived proportions use their own audit sample sizes and should not be interpreted as corpus prevalence estimates.
-
