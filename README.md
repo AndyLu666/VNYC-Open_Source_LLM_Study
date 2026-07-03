@@ -85,7 +85,4 @@ The paper's primary empirical claims are supported by:
 
 See [docs/DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) for details.
 
-## Anonymized Review
-
-This repository is prepared for double-blind review. The files intentionally avoid author names, institutional paths, and private credentials. If using a public GitHub repository during review, we recommend mirroring it through an anonymous hosting service such as [anonymous.4open.science](https://anonymous.4open.science/).
 
