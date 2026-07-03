@@ -72,7 +72,3 @@ latexmk -pdf -interaction=nonstopmode main.tex
 The released files are analysis-ready tables derived from a fixed May 2026 public-record snapshot. Repository-level percentages use 191,375 scoped Hugging Face repository records. Paper-level percentages use 2,214 main-analysis paper records unless otherwise stated. Audit-derived statistics use their own audit sample sizes and are reported as calibration checks rather than corpus prevalence estimates.
 
 The repository is designed to support inspection of the paper's reported measurements and to regenerate the main figures and tables. It does not attempt to distribute raw model files, downloaded PDFs, private local logs, or raw API transcripts. See `docs/DATA_STATEMENT.md` for details.
-
-## Review and Anonymity
-
-The manuscript source is configured for anonymous ACM/JCDL review. When sharing this repository during a double-blind review process, use an anonymous mirror such as `anonymous.4open.science` rather than a personally identifying GitHub URL. See `docs/ANONYMIZED_REVIEW.md` for the release notes used for review.
