@@ -1,0 +1,27 @@
+\begin{table*}[!tbp]
+\centering
+\caption{Headline evidence components and curation thresholds. Counts use 2,214 analysis-set paper records. $P$, $R$, and $L$ denote provenance, release-package, and direct-linkage scores.}
+\label{tab:key-results}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrl@{}}
+\toprule
+\textbf{Group} & \textbf{Evidence or threshold} & \textbf{Count} & \textbf{Share} & \textbf{Takeaway} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Evidence components}} \\
+\cmidrule(lr){1-5}
+Linkage & Matched paper--HF repo & 124 / 2,214 & 5.6\% & Direct relation rare \\
+Provenance & Inventory-backed family & 1,009 / 2,214 & 45.6\% & Grouping, not lineage \\
+Release & Code/asset evidence ($R\geq2$) & 793 / 2,214 & 35.8\% & Concrete release uneven \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Curation-readiness thresholds}} \\
+\cmidrule(lr){1-5}
+Discovery-ready & Any useful signal & 2,008 / 2,214 & \textbf{90.7\%} & Broad visibility \\
+Operational P+R & $P\geq2, R\geq2$ & 401 / 2,214 & \textbf{18.1\%} & Usable P + release \\
+High-curatability & $P\geq2, R\geq3, L\geq1$ & 136 / 2,214 & \textbf{6.1\%} & Joint evidence bottleneck \\
+Preservation-review & $P\geq2, R\geq4, L\geq1$ & 50 / 2,214 & 2.3\% & Multi-asset subset \\
+\bottomrule
+\end{tabular*}
+\renewcommand{\arraystretch}{1.0}
+\end{table*}

@@ -1,0 +1,6 @@
+threshold,rule,count,total,share_percent,curator_task_rationale,interpretation
+High-curatability record,provenance>=2 AND release>=3 AND link>=1,136,2214,6.1,"Usable provenance, asset-level release evidence, and at least one paper-repository signal.","Supports stronger attribution, artifact inspection, and preservation-selection workflows."
+Operational P+R threshold,provenance>=2 AND release>=2,401,2214,18.1,Usable provenance plus code/recipe-or-stronger release evidence.,Supports a practical curation workflow: the artifact can be grouped by upstream evidence and inspected through concrete procedural or asset evidence.
+Operational plus direct link,provenance>=2 AND release>=2 AND link>=1,400,2214,18.1,Operational threshold plus at least one paper-repository signal.,Tests whether adding bibliographic linkage changes the operational estimate; it changes one record in this corpus.
+Preservation-review candidate,provenance>=2 AND release>=4 AND link>=1,50,2214,2.3,"Usable provenance, full/multi-asset recipe, and direct link evidence.",Very strict condition for records closest to multi-asset preservation review; still not an execution test.
+Discovery-ready record,category != low_curatability,2008,2214,90.7,At least one curation-relevant trace exists.,"Useful for search and follow-up, but insufficient for provenance-aware curation."

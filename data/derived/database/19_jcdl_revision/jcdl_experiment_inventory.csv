@@ -1,0 +1,10 @@
+experiment_package,exists,file_count,role_for_jcdl,key_files_or_outputs,how_to_use_in_jcdl,caution
+00_source_snapshots,true,8,source data,"HF master, paper-model links, family edges",Methods/data description,Use only with fixed-snapshot wording.
+01_core_analysis_tables,true,9,main source table,paper_codebook_v3_full_enriched and core linked tables,Methods and denominator checks,Do not cite old raw value labels without strict/expert revisions.
+12_expert_validated_final_analysis,true,29,validated RQ2/RQ3/RQ4 support,expert-validated strict value positioning outputs,Background support for paper coding,Secondary for JCDL; main paper should use curation framing.
+13_robustness_checks,true,14,robustness,"record/work, section quality, uncertainty checks",Supplementary claim audit,Use when defending denominator sensitivity.
+14_solidity_checks,true,8,construct validity,construct pressure and leave-one-family-out checks,Supplementary robustness,"Useful for original dependency-mediated concept, not headline JCDL."
+16_www_revision,true,72,WWW measurement package,"query sensitivity, lineage audit, validation, near-miss controls",Evidence source for JCDL provenance/release claims,Avoid WWW RQ wording in JCDL narrative.
+17_www_reviewer_response,true,35,reviewer-response evidence,"corpus funnel, release enrichment, query sensitivity, family sensitivity","Methods, release hierarchy, appendix",Good source of final paper-corpus and release denominators.
+18_www_reviewer_requested_validations,true,21,expert/audit validation,"repo typing audit, release examples, sampling comparison",RQ1 validation and robustness,"State as expert/coauthor/study-team audit, not blinded two-coder reliability unless separately run."
+19_jcdl_revision,true,30,JCDL main evidence package,"metadata completeness, provenance sufficiency, release package, curatability, crosswalk",Primary JCDL Results and Discussion,This is the source of truth for JCDL writing.

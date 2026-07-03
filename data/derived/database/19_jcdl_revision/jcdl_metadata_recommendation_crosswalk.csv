@@ -1,0 +1,6 @@
+curation_problem,empirical_basis,recommended_metadata_or_interface,paper_section_use
+"Artifact records collapse base releases, fine-tunes, adapters, merges, and deployment packages.",Repository artifact typing and metadata audit.,Require a typed artifact-role field with multi-label packaging overlays.,RQ1 artifact discovery.
+Family names are useful but often insufficient for exact genealogy.,Lineage audit: strict support much lower than usable support.,"Represent upstream relation type explicitly: base, teacher, adapter target, merge input, quantization source, baseline only.",RQ3 provenance sufficiency.
+Paper records often report benefits without complete reusable artifact packages.,Release package completeness hierarchy.,"Expose release package fields for code, weights/adapters, data/evaluation assets, scripts, and full recipes.",RQ4 release package completeness.
+Papers and repositories are linked inconsistently.,Paper-repository alignment signals from HF and GitHub links.,Add bidirectional paper-to-repository and repository-to-paper relation fields with DOI/arXiv identifiers.,RQ2 metadata completeness and alignment.
+Weak and ambiguous provenance signals can be mistaken for exact lineage.,Evidence-tier and ambiguity taxonomy.,Store provenance confidence/evidence tier rather than a single unqualified family label.,RQ5 curation implications.

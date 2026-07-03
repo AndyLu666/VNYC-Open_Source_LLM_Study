@@ -1,0 +1,10 @@
+validation_layer,estimate,support_count,sample_size,share_percent,wilson_95_low_percent,wilson_95_high_percent,interpretation,sample_note
+Repository artifact-role audit,Balanced-sample strict role support,256,300,85.3,80.9,88.9,Supports role inference as a calibrated aggregate field; not a population-proportional accuracy estimate.,Balanced sample: 60 repositories per predicted role.
+Repository artifact-role audit,Strict support for base,43,60,71.7,59.2,81.5,Per-class precision in the balanced audit sample.,"Balanced per-predicted-class audit; per-class precision, not corpus prevalence."
+Repository artifact-role audit,Strict support for fine-tune,60,60,100.0,94.0,100.0,Per-class precision in the balanced audit sample.,"Balanced per-predicted-class audit; per-class precision, not corpus prevalence."
+Repository artifact-role audit,Strict support for adapter/LoRA,60,60,100.0,94.0,100.0,Per-class precision in the balanced audit sample.,"Balanced per-predicted-class audit; per-class precision, not corpus prevalence."
+Repository artifact-role audit,Strict support for merge/mixed,33,60,55.0,42.5,66.9,Per-class precision in the balanced audit sample.,"Balanced per-predicted-class audit; per-class precision, not corpus prevalence."
+Repository artifact-role audit,Strict support for quantized/deployment,60,60,100.0,94.0,100.0,Per-class precision in the balanced audit sample.,"Balanced per-predicted-class audit; per-class precision, not corpus prevalence."
+Lineage/provenance audit,Strict unique-primary support,56,200,28.0,22.2,34.6,Only a minority of audited rows support one clear upstream family.,Expert-reviewed lineage rows affecting provenance interpretation.
+Lineage/provenance audit,Usable family-level support,158,200,79.0,72.8,84.1,Family signals are often useful for collection organization even when exact genealogy is unavailable.,Expert-reviewed lineage rows affecting provenance interpretation.
+Release-evidence audit,URL/asset category retained,50,50,100.0,92.9,100.0,No aggregate release-category changes were required in the reviewed URL/asset rows.,Targeted URL/asset-level release-evidence review.

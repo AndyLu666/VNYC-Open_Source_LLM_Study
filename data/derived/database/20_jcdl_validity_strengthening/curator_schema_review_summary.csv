@@ -1,0 +1,5 @@
+review_item,result,interpretation
+Cases reviewed,10 archetypal curation boundary cases,Internal study-team expert pass over existing adjudicated examples; provided for user/coauthor recheck.
+Schema sufficiency,10/10 cases mapped to the proposed fields,The minimal schema covers the observed boundary modes when relation type and evidence tier are preserved.
+Most important design rule,"Do not collapse links, family names, and release statements into generic fields",Typed relation fields and asset-level release fields are necessary for JCDL curation claims.
+Remaining validation status,Needs user/coauthor spot-check before being described as expert-checked in the paper,This is not a blinded multi-curator reliability study.

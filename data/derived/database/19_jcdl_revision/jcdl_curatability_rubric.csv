@@ -1,0 +1,8 @@
+rubric_item,rule,interpretation
+Provenance component,0=no usable provenance; 1=weak/context family signal; 2=inventory-backed family signal; 3=exact paper-HF edge or exact/canonical model signal,captures the strength of evidence for upstream/family curation
+Release component,0=no explicit release; 1=stated/incomplete release; 2=code/scripts/recipe; 3=checkpoint/adapter/data/eval asset; 4=multiple assets or full recipe,"captures whether the paper record supports inspection, reuse, or preservation"
+Paper-repository link component,"0=no direct signal; 1=one of exact HF edge, paper HF link, or paper GitHub link; 2=two or more link signals",captures paper-repository alignment signals; this is not a complete cross-platform graph
+High curatability,"provenance>=2, release>=3, and link>=1","records jointly support usable provenance, concrete release assets, and at least one paper-repository link signal"
+Operational curatability,"provenance>=2 and release>=2, but not high","records support usable provenance and code/recipe-or-stronger release evidence, even if direct link evidence is incomplete"
+Partial curatability,"at least one useful provenance, release, or link signal, but below operational threshold",records are useful for some curation tasks but not a complete curation workflow
+Low curatability,"no usable provenance, no explicit release, and no direct paper-repository link signal",records expose too little evidence for reliable artifact curation

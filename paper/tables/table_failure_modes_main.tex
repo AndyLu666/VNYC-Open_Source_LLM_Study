@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Curated boundary patterns showing why public traces need typed record fields.}
+\label{tab:failure-modes-main}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.24\linewidth}p{0.34\linewidth}p{0.31\linewidth}@{}}
+\toprule
+Visible trace & Boundary pattern & Record-design implication \\
+\midrule
+Family mention & teacher / baseline / parent & typed upstream relation \\
+Multi-family context & several target or parent families & multi-valued lineage field \\
+Wrong or generic family & false positive / hidden family & evidence-tiered family label \\
+GitHub link & code without weights/data & separate code/weights/data fields \\
+HF link & checkpoint without full recipe & asset-level release tier \\
+Stated release & availability without URL asset & statement-only release tier \\
+Complete package & code + model/data/recipe & multi-asset recipe fields \\
+Role ambiguity & base vs merge vs deployment & role + package form \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,9 @@
+alignment_or_asset_signal,paper_count,paper_total,share_percent,interpretation
+has_code_or_scripts_signal,679,2214,30.7,code/scripts release evidence
+has_data_or_evaluation_asset_signal,6,2214,0.3,data or evaluation asset release evidence
+has_model_checkpoint_or_adapter_signal,251,2214,11.3,model weights/checkpoint/adapter release evidence
+has_multiple_asset_or_complete_recipe_signal,100,2214,4.5,strict multi-asset or full-recipe evidence
+has_recipe_or_pipeline_signal,810,2214,36.6,"recipe, pipeline, or procedural reuse evidence"
+has_stated_release_or_partial_signal,1487,2214,67.2,any stated release or open-asset signal
+mentions_github_link,678,2214,30.6,code-hosting or project link in paper text
+mentions_huggingface_link,233,2214,10.5,direct model-hub link in paper text

@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Paper-repository alignment signal decomposition.}
+\label{tab:alignment-decomposition}
+\small
+\begin{tabular}{p{0.20\linewidth}p{0.18\linewidth}p{0.13\linewidth}p{0.17\linewidth}p{0.22\linewidth}}
+\toprule
+Signal & Main records & Share & Status & Interpretation \\
+\midrule
+HF link in paper text & 233 & 10.5\% & Explicit Text Link Signal & explicit Hugging Face link mention in main-analysis paper text \\
+GitHub or code-hosting link in paper text & 678 & 30.6\% & Explicit Text Link Signal & explicit GitHub or code-hosting link mention in main-analysis paper text \\
+Matched exact model mention & 110 & 5.0\% & Medium & paper/model mention resolved to an HF repository with medium confidence \\
+Low-confidence fuzzy family/size match & 1 & 0.0\% & Low & low-confidence fuzzy match; appendix only \\
+Model-card arXiv backlink & 14 & 0.6\% & High & repository-to-paper backlink through model-card arXiv reference \\
+All matched paper-HF evidence combined & 124 & 5.6\% & Mixed Methods & all matched paper-HF evidence methods combined; report separately from explicit paper text links and avoid treating low-confidence fuzzy matches as direct links \\
+\bottomrule
+\end{tabular}
+\end{table*}

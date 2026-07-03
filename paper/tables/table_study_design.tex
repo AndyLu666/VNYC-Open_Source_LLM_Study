@@ -1,0 +1,20 @@
+\begin{table*}[!tbp]
+\centering
+\caption{Measurement constructs and checks. Each row maps one curation construct to its denominator, signal, calibration check, and supported claim.}
+\label{tab:measurement-constructs}
+\small
+\setlength{\tabcolsep}{3.6pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}p{0.17\linewidth}p{0.18\linewidth}p{0.22\linewidth}p{0.17\linewidth}p{0.18\linewidth}@{}}
+\toprule
+\textbf{Construct} & \textbf{Unit} & \textbf{Signal} & \textbf{Check} & \textbf{Output claim} \\
+\midrule
+Artifact identity & 191,375 repos & Role + package form & 300-role audit & Typed identity \\
+Scholarly linkage & Repos + 2,214 papers & HF/GitHub links; backlinks & Alignment split & Typed relation \\
+Provenance & 2,214 papers & Upstream tier $P$ & 200-row audit & Upstream claim \\
+Release package & 2,214 papers & Release tier $R$ & 50-URL audit & Visible assets \\
+\textbf{Integrated} & 2,214 papers & \textbf{P/R/L rule} & Sensitivity & \textbf{Readiness status} \\
+\bottomrule
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table*}

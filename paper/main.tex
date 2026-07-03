@@ -1,0 +1,89 @@
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[sigconf,anonymous]{acmart}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\setcopyright{none}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmConference[JCDL '26]{Proceedings of the ACM/IEEE Joint Conference on Digital Libraries}{October 13--16, 2026}{Dallas, Texas, USA}
+\acmBooktitle{Proceedings of the ACM/IEEE Joint Conference on Digital Libraries (JCDL '26), October 13--16, 2026, Dallas, Texas, USA}
+\acmDOI{}
+\acmISBN{}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{xspace}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+
+\definecolor{TableBlue}{HTML}{EAF3FA}
+\definecolor{TableBlueDark}{HTML}{D8EAF8}
+\definecolor{TableGreen}{HTML}{EAF6EA}
+\definecolor{TableGreenDark}{HTML}{DDEFD8}
+\definecolor{TableRed}{HTML}{F8E6E6}
+\definecolor{TableOrange}{HTML}{FFF1D6}
+\definecolor{TableGray}{HTML}{F2F2F2}
+\definecolor{TableRule}{HTML}{6E6E6E}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\tableheader}{}
+\newcommand{\tablesubhead}[2]{\multicolumn{#1}{@{}l}{\textit{#2}}}
+
+\newcommand{\curatability}{curatability\xspace}
+\newcommand{\hf}{Hugging Face\xspace}
+\newcommand{\llm}{LLM\xspace}
+\newcommand{\llms}{LLMs\xspace}
+
+\begin{document}
+
+\title{From Visibility to Curatability: Metadata, Provenance, and Release Evidence for Compact and Derived Open LLM Artifacts}
+
+\begin{abstract}
+Open \llm artifacts are often described as available, yet the evidence needed to curate them is distributed across model repositories, papers, model cards, code, and release statements. For digital libraries, this creates a gap between visibility and \curatability: an artifact may be findable without being sufficiently identifiable, linked to scholarship, traceable to upstream models, or accompanied by inspectable release assets. This paper operationalizes \curatability for compact and derived open \llm artifacts through four evidence fields---artifact identity, scholarly linkage, provenance, and release package---and an integrated curation-readiness status. Using a fixed May 2026 snapshot of 191,375 public \hf model repositories and 2,729 scholarly paper records, including 2,214 analysis-set records, we construct linked repository--paper evidence and evaluate it through rule-based normalization, expert audits, and sensitivity checks. The results reveal a sharp visibility-to-curatability funnel: discovery signals are common, but coordinated curation evidence is rare. Matched paper--\hf repository evidence covers 5.6\% of analysis-set paper records; 18.1\% satisfy an operational provenance-plus-release threshold; and only 6.1\% satisfy a stricter joint-evidence threshold. In this scoped public-record corpus, current open \llm publication practices support discovery more readily than digital-library curation. We contribute a reusable measurement framework and a metadata agenda for model hubs, scholarly indexes, and digital libraries.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10002951.10003227.10003236</concept_id>
+       <concept_desc>Information systems~Digital libraries and archives</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10002951.10003260.10003261</concept_id>
+       <concept_desc>Information systems~Information extraction</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10002951.10003317.10003318</concept_id>
+       <concept_desc>Information systems~Document representation</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Digital libraries and archives}
+\ccsdesc[300]{Information systems~Information extraction}
+\ccsdesc[300]{Information systems~Document representation}
+
+\keywords{digital libraries, model repositories, large language models, provenance, metadata, reproducibility, research artifacts, open science}
+
+\maketitle
+
+\input{sections/01_introduction}
+\input{sections/02_problem}
+\input{sections/03_related_work}
+\input{sections/04_data_methods}
+\input{sections/05_results}
+\input{sections/06_discussion}
+\input{sections/07_limitations_conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

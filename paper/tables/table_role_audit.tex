@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Balanced artifact-role audit summary.}
+\label{tab:role-audit}
+\small
+\begin{tabular}{p{0.20\linewidth}r r r p{0.34\linewidth}}
+\toprule
+Predicted role & Audit rows & Strict support & Precision & Note \\
+\midrule
+Base & 60 & 43 & 71.7\% & Boundary cases often contain adaptation or task-tuning evidence. \\
+Fine-tune & 60 & 60 & 100.0\% & Highly consistent in the balanced audit sample. \\
+Adapter/LoRA & 60 & 60 & 100.0\% & Highly consistent in the balanced audit sample. \\
+Merge/mixed & 60 & 33 & 55.0\% & Often overlaps with quantization or deployment packaging. \\
+Quantized/deployment & 60 & 60 & 100.0\% & Highly consistent in the balanced audit sample. \\
+Overall & 300 & 256 & 85.3\% & Strict agreement across the balanced artifact-role audit. \\
+\bottomrule
+\end{tabular}
+\end{table*}

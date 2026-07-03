@@ -1,0 +1,7 @@
+alignment_signal,source_record,all_edge_count,all_unique_paper_count,main_edge_count,main_unique_paper_record_count,main_paper_record_total,main_record_share_percent,link_confidence_or_status,interpretation
+paper_text_huggingface_link,paper text extracted links,,,,233,2214,10.5,explicit_text_link_signal,explicit Hugging Face link mention in main-analysis paper text
+paper_text_github_link,paper text extracted links,,,,678,2214,30.6,explicit_text_link_signal,explicit GitHub or code-hosting link mention in main-analysis paper text
+paper_hf_exact_edge::exact_model_mention,paper_model_hf_edges_exact.csv,156,138,125,110,2214,5.0,medium,paper/model mention resolved to an HF repository with medium confidence
+paper_hf_exact_edge::family_size_fuzzy_match,paper_model_hf_edges_exact.csv,2,2,1,1,2214,0.0,low,low-confidence fuzzy match; appendix only
+paper_hf_exact_edge::model_card_arxiv_ref,paper_model_hf_edges_exact.csv,67,16,57,14,2214,0.6,high,repository-to-paper backlink through model-card arXiv reference
+paper_hf_exact_edge::all_methods,paper_model_hf_edges_exact.csv,225,155,183,124,2214,5.6,mixed_methods,all exact paper-HF edge methods combined; report separately from explicit paper text links

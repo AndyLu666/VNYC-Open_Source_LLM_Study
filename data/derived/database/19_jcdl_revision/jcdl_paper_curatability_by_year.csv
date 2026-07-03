@@ -1,0 +1,17 @@
+year,curatability_category,paper_count,year_total,share_percent,note
+2023,1_high_curatability,17,435,3.9,
+2023,2_operational_curatability,39,435,9.0,
+2023,3_partial_curatability,349,435,80.2,
+2023,4_low_curatability,30,435,6.9,
+2024,1_high_curatability,50,811,6.2,
+2024,2_operational_curatability,102,811,12.6,
+2024,3_partial_curatability,580,811,71.5,
+2024,4_low_curatability,79,811,9.7,
+2025,1_high_curatability,67,841,8.0,
+2025,2_operational_curatability,107,841,12.7,
+2025,3_partial_curatability,584,841,69.4,
+2025,4_low_curatability,83,841,9.9,
+2026,1_high_curatability,2,127,1.6,2026 is a partial-year record
+2026,2_operational_curatability,17,127,13.4,2026 is a partial-year record
+2026,3_partial_curatability,94,127,74.0,2026 is a partial-year record
+2026,4_low_curatability,14,127,11.0,2026 is a partial-year record

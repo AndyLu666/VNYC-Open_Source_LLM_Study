@@ -1,0 +1,9 @@
+metric,value,notes
+exact_paper_hf_edges,225,Rows in paper_model_hf_edges_exact.csv.
+unique_papers_with_exact_paper_hf_edge,155,Unique paper ids with at least one exact paper-HF edge.
+edges_with_repo_metadata_match,225,Exact edges whose repo_level_id appears in model_repo_master_HF.csv.
+edge_repo_type::quantized_or_deployment,137,60.9% of exact paper-HF edges.
+edge_repo_type::finetune,51,22.7% of exact paper-HF edges.
+edge_repo_type::base,34,15.1% of exact paper-HF edges.
+edge_repo_type::adapter_lora,2,0.9% of exact paper-HF edges.
+edge_repo_type::merge_mixed,1,0.4% of exact paper-HF edges.

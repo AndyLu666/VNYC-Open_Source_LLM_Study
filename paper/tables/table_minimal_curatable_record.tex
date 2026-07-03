@@ -1,0 +1,25 @@
+\begin{table*}[!tbp]
+\centering
+\caption{A minimal curatable record for compact and derived open \llm artifacts. The record acts as a coordination contract across existing systems rather than a requirement for a new centralized registry.}
+\label{tab:minimal-curatable-record}
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{0.98\textwidth}{@{}p{0.15\textwidth}p{0.20\textwidth}p{0.22\textwidth}p{0.20\textwidth}Y@{}}
+\toprule
+Field group & Core field & Primary maintainer/source & Failure prevented & Curation use \\
+\midrule
+Artifact identity & \texttt{artifact\_role} & Model hub / repository owner & Generic model label & Catalog type \\
+\rowcolor{TableGray}
+Package form & \texttt{package\_form} & Model hub / repository metadata & Hidden distribution format & Package interpretation \\
+Scholarly relation & \texttt{paper\_repository\_relation} & Paper authors + scholarly index & Untyped links & Bibliographic control \\
+\rowcolor{TableGray}
+Upstream relation & \texttt{upstream\_relation\_type} & Model hub + paper text & Family-as-provenance & Provenance relation \\
+Evidence tier & \texttt{provenance\_evidence\_tier} & Digital library / index & Overstated confidence & Confidence and scope \\
+\rowcolor{TableGray}
+Release assets & \texttt{release\_asset\_types} & Model hub + code repository + paper & Release-as-binary & Asset package \\
+License/access signal & \texttt{license\_access\_signal} & Model hub / repository metadata & Missing governance context & Access context \\
+\bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1.0}
+\end{table*}

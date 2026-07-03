@@ -1,0 +1,5 @@
+provenance_sufficiency_tier,paper_count,paper_total,share_percent
+1_exact_paper_hf_repo_edge,124,2214,5.6
+3_inventory_backed_family_signal,1009,2214,45.6
+4_weak_or_context_family_signal,485,2214,21.9
+5_no_usable_family_or_provenance_signal,596,2214,26.9

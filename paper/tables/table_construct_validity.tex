@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\caption{Construct validity notes for the main measures. The table separates platform metadata, project-inferred fields, audited evidence, and operational composites.}
+\label{tab:construct-validity}
+\small
+\begin{tabular}{p{0.17\linewidth}p{0.22\linewidth}p{0.25\linewidth}p{0.27\linewidth}}
+\toprule
+Construct & Record source type & Validation status & Construct risk controlled in wording \\
+\midrule
+Artifact role & project-inferred from repository metadata & 300-repository expert audit; 85.3\% strict agreement & role is not a native HF field; boundary cases include base vs merge/mixed and packaging overlays \\
+Bibliographic linkage & mixed platform metadata, paper text extraction, and project link resolution & alignment decomposition separates explicit links from inferred/model-card evidence & explicit paper links, model-card back-links, and resolved exact edges are not interchangeable \\
+Provenance sufficiency & project-derived evidence tiers from paper/family/link records & 200-row expert lineage audit; 28.0\% strict and 79.0\% usable support & family signal is not exact lineage and must not be presented as genealogy \\
+Release-package evidence & project-coded paper release evidence & 50-row expert URL-level audit & release evidence is not executable reproducibility \\
+Integrated curatability & transparent operational composite from provenance, release, and link signals & derived from validated components; composite thresholds checked by sensitivity table & measures record completeness rather than model quality, adoption, preservation success, or executable reproducibility \\
+\bottomrule
+\end{tabular}
+\end{table*}

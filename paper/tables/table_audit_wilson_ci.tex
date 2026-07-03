@@ -1,0 +1,21 @@
+\begin{table*}[!tbp]
+\centering
+\caption{Expert-audit outcomes with Wilson 95\% intervals. Audits calibrate boundary decisions rather than estimate population prevalence.}
+\label{tab:audit-wilson-ci}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.14}
+\begin{tabularx}{0.94\textwidth}{@{}p{0.16\textwidth}p{0.21\textwidth}cp{0.18\textwidth}Y@{}}
+\toprule
+\textbf{Audit layer} & \textbf{Boundary checked} & \textbf{Count} & \textbf{Estimate (95\% CI)} & \textbf{Audit implication} \\
+\midrule
+Repository role & Strict role support & 256/300 & \cellcolor{TableGreen}\textbf{85.3\%} [80.9, 88.9] & Artifact-role labels are stable \\
+\midrule
+Upstream evidence & Strict unique-primary & 56/200 & \cellcolor{TableRed}28.0\% [22.2, 34.6] & Strict lineage claims stay conservative \\
+ & Usable family-level & 158/200 & \cellcolor{TableGreen}\textbf{79.0\%} [72.8, 84.1] & Family-level grouping is usable \\
+\midrule
+Release evidence & URL/asset category retained & 50/50 & \cellcolor{TableGreen}\textbf{100.0\%} [92.9, 100.0] & Release categories are stable \\
+\bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1.0}
+\end{table*}

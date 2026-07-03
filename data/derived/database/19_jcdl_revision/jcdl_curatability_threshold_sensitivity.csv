@@ -1,0 +1,6 @@
+sensitivity_test,rule,paper_count,paper_total,share_percent,interpretation
+strict_joint_high,provenance>=2 AND release>=3 AND link>=1,136,2214,6.1,matches high curatability: all three major evidence components present
+operational_current,provenance>=2 AND release>=2,401,2214,18.1,matches high+operational curatability: usable provenance plus code/recipe-or-stronger release evidence
+operational_requires_link,provenance>=2 AND release>=2 AND link>=1,400,2214,18.1,stricter operational test that also requires a direct paper-repository signal
+full_recipe_with_link,provenance>=2 AND release>=4 AND link>=1,50,2214,2.3,very strict test requiring a full/multi-asset recipe and a direct link signal
+any_useful_signal,category != low_curatability,2008,2214,90.7,broad visibility test: at least one useful curation signal exists

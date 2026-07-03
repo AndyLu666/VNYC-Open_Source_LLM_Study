@@ -1,0 +1,6 @@
+provenance_sufficiency_tier,audit_count,audit_total,share_percent
+1_exact_or_strictly_supported_record,56,200,28.0
+2_named_upstream_or_teacher_signal,38,200,19.0
+3_usable_multifamily_or_family_signal,58,200,29.0
+4_usable_but_context_dependent_signal,6,200,3.0
+5_not_supported_or_misleading_signal,42,200,21.0

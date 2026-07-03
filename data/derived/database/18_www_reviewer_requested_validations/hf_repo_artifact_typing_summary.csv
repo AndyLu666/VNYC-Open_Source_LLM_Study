@@ -1,0 +1,7 @@
+metric,value,notes
+audited_rows,300.0,Balanced expert metadata audit: 60 repositories per predicted five-way class.
+strict_overall_role_agreement,0.8533333333333334,Predicted role equals expert manual role across the balanced audit sample.
+strict_macro_precision,0.8533333333333333,Unweighted mean of per-predicted-class strict precision.
+packaging_overlay_cases,24.0,Predicted role is correct but repo artifact form also shows packaging/quantization/deployment signals.
+suggested_role_change_cases,12.0,Expert audit found stronger metadata support for another primary role.
+ambiguous_boundary_cases,32.0,"Metadata is insufficient or conflicting; use as uncertainty, not hard error."

@@ -1,0 +1,5 @@
+curatability_category,paper_count,paper_total,share_percent,interpretation
+1_high_curatability,136,2214,6.1,"records support provenance, concrete release assets, and at least one paper-repository link signal"
+2_operational_curatability,265,2214,12.0,records support usable provenance and concrete code/recipe or stronger release evidence
+3_partial_curatability,1607,2214,72.6,records expose at least one useful signal but lack a complete curation package
+4_low_curatability,206,2214,9.3,"records lack usable provenance, explicit release evidence, and direct paper-repository link signals"

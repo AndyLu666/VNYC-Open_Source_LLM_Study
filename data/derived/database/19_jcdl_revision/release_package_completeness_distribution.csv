@@ -1,0 +1,7 @@
+release_package_score,release_package_tier,paper_count,paper_total,share_percent
+0,no_explicit_release_signal,727,2214,32.8
+1,stated_or_incomplete_release_signal,694,2214,31.3
+2,code_or_scripts_or_recipe,539,2214,24.3
+3,data_or_evaluation_assets,3,2214,0.1
+3,model_checkpoint_or_adapter,151,2214,6.8
+4,multiple_assets_or_complete_recipe,100,2214,4.5

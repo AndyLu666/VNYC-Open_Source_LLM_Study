@@ -1,0 +1,14 @@
+curation_field,source_column,curation_function,records_with_signal,records_total,share_percent,interpretation
+Stable repository id,hf_repo_id,Discovery / citation,191375,191375,100.0,broadly available in the snapshot
+Publisher or owner,publisher_org_name,Attribution,191375,191375,100.0,broadly available in the snapshot
+Creation timestamp,created_at,Temporal curation,191375,191375,100.0,broadly available in the snapshot
+Artifact role,model_repo_type,Artifact discovery,191375,191375,100.0,broadly available in the snapshot
+Variant type,variant_type,Artifact discovery,191375,191375,100.0,broadly available in the snapshot
+Model family label,family_primary,Family-level discovery,118746,191375,62.0,available for many records but incomplete
+Explicit upstream model,base_model_raw,Provenance,102437,191375,53.5,available for many records but incomplete
+Typed upstream relation,base_model_relation_type,Provenance,102437,191375,53.5,available for many records but incomplete
+Scholarly reference,arxiv_refs,Paper-repository alignment,63800,191375,33.3,sparse; useful where present but not collection-wide
+Task descriptors,task_set_clean,Discovery / retrieval,124719,191375,65.2,available for many records but incomplete
+Domain descriptors,domain_set_clean,Collection organization,27491,191375,14.4,rare; weak basis for collection-wide curation
+General tag record,tags_list,Discovery / retrieval,191375,191375,100.0,broadly available in the snapshot
+License tag signal,__license_tag_signal__,Trust / governance,89629,191375,46.8,sparse; useful where present but not collection-wide
