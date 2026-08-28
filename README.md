@@ -18,13 +18,8 @@ The project studies compact and derived open LLM artifacts as distributed schola
 ├── docs/
 │   ├── DATA_DICTIONARY.md
 │   ├── DATA_STATEMENT.md
-│   ├── REPRODUCIBILITY.md
-│   └── ANONYMIZED_REVIEW.md
-├── paper/
-│   ├── main.tex
-│   ├── sections/
-│   ├── figures/
-│   └── tables/
+│   ├── CODING_GUIDE.md
+│   └── REPRODUCIBILITY.md
 ├── scripts/
 │   ├── make_figures_tables.py
 │   └── verify_artifact.py
@@ -38,6 +33,7 @@ The project studies compact and derived open LLM artifacts as distributed schola
 For most readers, the following files are the best starting points:
 
 - `docs/DATA_DICTIONARY.md`: describes the released tables, units of analysis, and denominators.
+- `docs/CODING_GUIDE.md`: defines the evidence codes, relation gate, audit decisions, and boundary-case protocol.
 - `docs/REPRODUCIBILITY.md`: gives the commands for checking the artifact and regenerating manuscript figures/tables.
 - `data/main_analysis/`: contains the main repository-level and paper-level analysis tables.
 - `data/validity_checks/`: contains audit intervals, construct-validity mappings, threshold rationales, and curated failure-mode cases.
@@ -46,8 +42,6 @@ For most readers, the following files are the best starting points:
 - `scripts/make_figures_tables.py`: regenerates the paper figures and LaTeX tables from the released CSVs.
 - `scripts/verify_artifact.py`: checks required files, key row counts, manifest checksums, and common anonymization issues.
 - `MANIFEST.csv`: records file paths, roles, byte sizes, and SHA-256 checksums.
-
-The paper source is included under `paper/`. The main manuscript tables are in `paper/tables/`; supporting generated tables are in `paper/tables/supplementary/`.
 
 ## Quick Reproduction Check
 
@@ -60,12 +54,7 @@ python scripts/verify_artifact.py
 python scripts/make_figures_tables.py
 ```
 
-To compile the manuscript source:
-
-```bash
-cd paper
-latexmk -pdf -interaction=nonstopmode main.tex
-```
+The generation script writes reconstructed figures and LaTeX tables under `paper/`; these outputs are derived from the released CSV files and are not required for the integrity check.
 
 ## Data Scope
 
