@@ -29,7 +29,7 @@ We study compact and derived open LLM artifacts through the public records surro
 | Scoped May 2026 snapshot | Paper-record evidence and thresholds | Calibration of evidence decisions |
 
 <p align="center">
-  <img src="assets/readme/curatability-framework.png" width="780" alt="Four dimensions of public-record evidence: artifact identity, scholarly linkage, provenance sufficiency, and release-package readiness, brought together as integrated curatability.">
+  <img src="assets/readme/study-pipeline.png" width="100%" alt="Figure 2. Systemic evidence integration and curation calibration workflow: public traces are extracted and normalized into typed evidence fields, then calibrated through rules, expert audits, and sensitivity checks to produce curation-readiness decisions.">
 </p>
 
 ## From Visibility to Curatability
