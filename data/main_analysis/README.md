@@ -1,60 +1,36 @@
 # Main Analysis Tables
 
-This directory contains the primary analysis-ready tables used by the manuscript. The files support the paper's repository-level metadata measurements, paper-level curatability measurements, provenance and release-evidence summaries, paper-repository alignment results, and claim-support ledgers.
+[Data index](../README.md) · [Data dictionary](../../docs/DATA_DICTIONARY.md) · [Evidence codes](../../docs/CODING_GUIDE.md)
 
-## Main Reported Measurements
+## Record-Level Data
 
-### Metadata completeness
-- Stable repository id: 100.0% (broadly available in the snapshot).
-- Publisher or owner: 100.0% (broadly available in the snapshot).
-- Creation timestamp: 100.0% (broadly available in the snapshot).
-- Artifact role: 100.0% (broadly available in the snapshot).
-- Variant type: 100.0% (broadly available in the snapshot).
-- Model family label: 62.0% (available for many records but incomplete).
-- Explicit upstream model: 53.5% (available for many records but incomplete).
-- Typed upstream relation: 53.5% (available for many records but incomplete).
-- Scholarly reference: 33.3% (sparse; useful where present but not collection-wide).
-- Task descriptors: 65.2% (available for many records but incomplete).
-- Domain descriptors: 14.4% (rare; weak basis for collection-wide curation).
-- General tag record: 100.0% (broadly available in the snapshot).
-- License tag signal: 46.8% (sparse; useful where present but not collection-wide).
+| Table | Unit | Use |
+| :--- | :--- | :--- |
+| [Repository metadata](jcdl_metadata_completeness_repo_level.csv) | 191,375 repository records | Coverage indicators, inferred role, package form, and family |
+| [Paper curatability](jcdl_paper_curatability_paper_level.csv) | 2,214 paper records | `P/R/L` scores, readiness categories, and evidence gaps |
+| [Provenance evidence](jcdl_provenance_sufficiency_paper_level.csv) | 2,214 paper records | Strongest observable upstream-evidence tier |
+| [Release evidence](jcdl_release_package_completeness_paper_level.csv) | 2,214 paper records | Visible assets and release-package tier |
+| [Alignment edges](jcdl_paper_repo_alignment_edges.csv) | Paper-repository edge | Direct alignment evidence |
 
-### Release-package evidence
-- Score 0 / no_explicit_release_signal: 32.8% of main-analysis papers.
-- Score 1 / stated_or_incomplete_release_signal: 31.3% of main-analysis papers.
-- Score 2 / code_or_scripts_or_recipe: 24.3% of main-analysis papers.
-- Score 3 / data_or_evaluation_assets: 0.1% of main-analysis papers.
-- Score 3 / model_checkpoint_or_adapter: 6.8% of main-analysis papers.
-- Score 4 / multiple_assets_or_complete_recipe: 4.5% of main-analysis papers.
+## Summaries and Comparisons
 
-### Paper-repository alignment
-- has_code_or_scripts_signal: 30.7% (code/scripts release evidence).
-- has_data_or_evaluation_asset_signal: 0.3% (data or evaluation asset release evidence).
-- has_model_checkpoint_or_adapter_signal: 11.3% (model weights/checkpoint/adapter release evidence).
-- has_multiple_asset_or_complete_recipe_signal: 4.5% (strict multi-asset or full-recipe evidence).
-- has_recipe_or_pipeline_signal: 36.6% (recipe, pipeline, or procedural reuse evidence).
-- has_stated_release_or_partial_signal: 67.2% (any stated release or open-asset signal).
-- mentions_github_link: 30.6% (code-hosting or project link in paper text).
-- mentions_huggingface_link: 10.5% (direct model-hub link in paper text).
+| Question | Tables |
+| :--- | :--- |
+| Which metadata fields are visible? | [Coverage matrix](metadata_completeness_matrix.csv) · [Role/year breakdown](jcdl_metadata_completeness_summary_by_role_year.csv) |
+| How do readiness rules change coverage? | [Threshold sensitivity](jcdl_curatability_threshold_sensitivity.csv) · [Exclusive readiness categories](jcdl_paper_curatability_summary.csv) |
+| How does evidence vary across records? | [Curatability by mechanism](jcdl_paper_curatability_by_mechanism.csv) · [By year](jcdl_paper_curatability_by_year.csv) |
+| What upstream evidence is visible? | [Provenance summary](jcdl_provenance_sufficiency_summary.csv) · [By mechanism](jcdl_provenance_sufficiency_by_mechanism.csv) |
+| What is publicly released? | [Package distribution](release_package_completeness_distribution.csv) · [By mechanism](jcdl_release_package_completeness_by_mechanism.csv) |
+| Which signals connect papers and repositories? | [Signal decomposition](jcdl_paper_repo_alignment_decomposition.csv) · [Alignment summary](jcdl_paper_repo_alignment_summary.csv) |
 
-### Provenance sufficiency audit
-- audited_rows: 200 (Expert-reviewed lineage/provenance audit rows.)
-- strict_unique_primary_support: 56 (28.0% of audited rows.)
-- usable_family_signal_support: 158 (79.0% of audited rows.)
+Threshold coverage is cumulative: operational P+R includes records that also meet high curatability. The exclusive category table instead assigns each record to one group. Use the [coding guide](../../docs/CODING_GUIDE.md) for exact definitions.
 
-### Integrated curation readiness
-- 1_high_curatability: 6.1% (records support provenance, concrete release assets, and at least one paper-repository link signal).
-- 2_operational_curatability: 12.0% (records support usable provenance and concrete code/recipe or stronger release evidence).
-- 3_partial_curatability: 72.6% (records expose at least one useful signal but lack a complete curation package).
-- 4_low_curatability: 9.3% (records lack usable provenance, explicit release evidence, and direct paper-repository link signals).
+## From Evidence to Metadata Design
 
-### Curation functions
-- Artifact identity: project-inferred artifact role available for 100.0%; project-inferred variant type available for 100.0%; strict audited role agreement 85.3%
-- Bibliographic control: stable id/owner/date 100.0%/100.0%/100.0%; repository scholarly reference 33.3%; paper HF link 10.5%; paper GitHub link 30.6%
-- Provenance sufficiency: paper exact HF edge 5.6%; inventory-backed family signal 45.6%; expert strict support 28.0% of audited rows.; expert usable support 79.0% of audited rows.
-- Reuse and preservation readiness: any release/open-asset signal 67.2%; concrete code/asset signal 35.8%; strict full package 4.5%
-- Integrated curatability: high curatability 6.1% jointly satisfies provenance, concrete release, and link criteria; high or operational curatability 18.1% under the operational rubric
+- [Claim-evidence ledger](jcdl_claim_evidence_ledger.csv): maps measurements to their supporting analyses.
+- [Construct-validity mapping](jcdl_evidence_source_construct_validity.csv): connects constructs, sources, and interpretation.
+- [Metadata recommendation crosswalk](jcdl_metadata_recommendation_crosswalk.csv): connects observed patterns to proposed fields.
+- [Curated failure examples](jcdl_curation_failure_examples.csv): illustrates ambiguity in public records.
+- [Curation-function coverage](jcdl_record_function_coverage_summary.csv): organizes evidence by digital-library task.
 
-## Notes
-
-Repository-level percentages use 191,375 scoped Hugging Face repository records. Paper-level percentages use 2,214 main-analysis paper records unless a table states a different denominator. Audit-derived values are calibration checks and should not be interpreted as corpus prevalence estimates.
+Existing filenames are retained so analysis scripts and published links remain stable. Field definitions, denominator conventions, and supporting-table descriptions are in the [data dictionary](../../docs/DATA_DICTIONARY.md).

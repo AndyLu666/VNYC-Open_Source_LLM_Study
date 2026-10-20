@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "Please cite the JCDL 2026 paper when using this research artifact."
+type: software
+title: "Visible but Not Yet Curatable: Research Artifact"
+authors:
+  - family-names: Lu
+    given-names: Yiyi
+    affiliation: Duke Kunshan University
+  - family-names: Qian
+    given-names: Yilai
+    affiliation: Duke Kunshan University
+  - family-names: Jin
+    given-names: Yucheng
+    affiliation: Duke Kunshan University
+repository-code: "https://github.com/AndyLu666/VNYC-Open_Source_LLM_Study"
+url: "https://github.com/AndyLu666/VNYC-Open_Source_LLM_Study"
+license: MIT
+keywords:
+  - digital libraries
+  - large language models
+  - research artifacts
+  - metadata
+  - provenance
+  - open science
+preferred-citation:
+  type: conference-paper
+  title: "Visible but Not Yet Curatable: Characterizing the Curatability of Compact and Derived Open LLM Artifacts"
+  authors:
+    - family-names: Lu
+      given-names: Yiyi
+    - family-names: Qian
+      given-names: Yilai
+    - family-names: Jin
+      given-names: Yucheng
+  collection-title: "The 2026 ACM/IEEE Joint Conference on Digital Libraries"
+  year: 2026
+  doi: "10.1145/3805696.3846021"
+  url: "https://doi.org/10.1145/3805696.3846021"
+  publisher:
+    name: Association for Computing Machinery

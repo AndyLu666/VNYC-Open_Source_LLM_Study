@@ -1,14 +1,16 @@
 # Validity Check Tables
 
+[Data index](../README.md) · [Audit protocol](../../docs/CODING_GUIDE.md#expert-audit-protocol)
+
 This folder contains compact validity and audit-support tables used by the manuscript:
 
 - Wilson 95% confidence intervals for audit-derived proportions.
 - A main-text construct-validity summary.
 - A curator-task rationale for curatability thresholds.
 - Curated failure modes explaining why links, family names, and release statements need typed fields.
-- A curator-style schema review sheet over ten adjudicated boundary examples.
+- A ten-case schema walkthrough prepared for author/coauthor spot-check.
 
-The schema review is a study-team expert pass and should not be described as a blinded multi-curator reliability study unless a separate external protocol is run.
+The walkthrough illustrates how the proposed fields apply to boundary examples. Its `needs_user_recheck` column records the pending spot-check status. Audit proportions use the sample sizes listed in each audit table.
 
 ## Files
 - `audit_wilson_ci.csv`

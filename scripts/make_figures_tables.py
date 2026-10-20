@@ -894,13 +894,13 @@ def make_table_curatability_components() -> None:
 
 def make_table_metadata_schema() -> None:
     rows = [
-        ("Artifact role", "primary_artifact_role", "base; fine-tune; adapter; merge; distilled student; evaluation package; deployment artifact", "Model-card identity field"),
-        ("Packaging overlay", "artifact_package_form", "quantized; converted; adapter-only; merged; checkpoint-complete; deployment format", "Model-card technical metadata"),
+        ("Artifact role", "artifact_role", "base; fine-tune; adapter; merge; distilled student; evaluation package; deployment artifact", "Model-card identity field"),
+        ("Packaging overlay", "package_form", "quantized; converted; adapter-only; merged; checkpoint-complete; deployment format", "Model-card technical metadata"),
         ("Upstream relation", "upstream_relation_type", "base; teacher; adapter target; merge input; quantization source; evaluator; baseline", "PROV-style relation type"),
         ("Provenance evidence", "provenance_evidence_tier", "explicit upstream field; matched repository with visible upstream relation; inventory-backed family; contextual mention", "PROV evidence confidence"),
         ("Paper link", "paper_repository_relation", "introduced-by; supports-paper; evaluated-in; baseline-in; cited-by-card", "Bidirectional paper/repository relation"),
         ("Release package", "release_asset_types", "code; scripts; weights; adapter; data; evaluation assets; recipe; environment", "Model card / openness component"),
-        ("Governance", "license_and_access_signal", "license tag; gated flag; missing/unknown", "Trust and reuse metadata"),
+        ("Governance", "license_access_signal", "license tag; gated flag; missing/unknown", "Trust and reuse metadata"),
     ]
     tex = [
         r"\begin{table*}[t]",

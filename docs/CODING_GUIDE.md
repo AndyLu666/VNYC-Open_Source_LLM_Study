@@ -54,4 +54,5 @@ The supporting files are:
 - `data/validity_checks/audit_wilson_ci.csv`
 - `data/validity_checks/curatability_threshold_rationale.csv`
 - `data/validity_checks/failure_modes_curated_for_jcdl.csv`
-- `data/validity_checks/curator_schema_review_cases_10.csv`
+
+Separately, `data/validity_checks/curator_schema_review_cases_10.csv` provides ten illustrative schema walkthroughs prepared for author/coauthor spot-check. Their follow-up status is recorded in `needs_user_recheck`.

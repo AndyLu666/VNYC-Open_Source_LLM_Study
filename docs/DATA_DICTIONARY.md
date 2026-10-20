@@ -2,6 +2,8 @@
 
 This document explains the analysis-ready data files released with the artifact. Percentages in the paper are computed from these tables unless otherwise stated.
 
+[Repository home](../README.md) · [Data index](../data/README.md) · [Coding guide](CODING_GUIDE.md)
+
 ## Main Analysis Tables
 
 Path: `data/main_analysis/`
@@ -21,7 +23,7 @@ Path: `data/main_analysis/`
 
 - `metadata_completeness_matrix.csv`
   - Unit: curation metadata field.
-  - Used for Figure 2 panel (a).
+  - Input to the metadata-coverage plot, `fig2_metadata_completeness`.
 
 - `jcdl_metadata_completeness_summary_by_role_year.csv`
   - Unit: repository role by year.
@@ -57,7 +59,7 @@ Path: `data/main_analysis/`
 
 - `jcdl_provenance_sufficiency_by_mechanism.csv`
   - Unit: mechanism by provenance tier.
-  - Used for Figure 3 panel (a).
+  - Input to the provenance-by-mechanism plot, `fig3_provenance_alignment`.
 
 - `jcdl_paper_repo_alignment_edges.csv`
   - Unit: paper-to-repository alignment edge.
@@ -65,7 +67,7 @@ Path: `data/main_analysis/`
 
 - `jcdl_paper_repo_alignment_decomposition.csv`
   - Unit: alignment signal type.
-  - Used for Figure 3 panel (b).
+  - Input to the alignment-signal plot, `fig3_provenance_alignment`.
 
 ### Release Evidence
 
@@ -75,7 +77,7 @@ Path: `data/main_analysis/`
 
 - `release_package_completeness_distribution.csv`
   - Unit: release-package evidence tier.
-  - Used for Figure 4 panel (a).
+  - Input to the release-distribution plot, `fig4_release_curatability`.
 
 - `jcdl_release_package_completeness_by_mechanism.csv`
   - Unit: mechanism by release-evidence tier.
@@ -111,10 +113,16 @@ Path: `data/validity_checks/`
   - Curated failure modes used to support the metadata design agenda.
 
 - `curator_schema_review_cases_10.csv`
-  - Internal schema review cases over boundary examples. This is an expert review aid, not a blinded multi-curator reliability study.
+  - Ten illustrative schema walkthroughs prepared for author/coauthor spot-check. The `needs_user_recheck` column preserves that follow-up status.
 
 - `curator_schema_review_summary.csv`
-  - Summary of the schema review cases.
+  - Summary of the schema walkthroughs and their spot-check status.
+
+### Metadata Field Names
+
+The paper's seven-field vocabulary uses `artifact_role`, `package_form`, `paper_repository_relation`, `upstream_relation_type`, `provenance_evidence_tier`, `release_asset_types`, and `license_access_signal`.
+
+Existing case-sheet values retain `license_and_access_signal` as an earlier alias for `license_access_signal`. The reporting template uses the final paper vocabulary; released CSV contents retain their original spelling.
 
 ## Minimal Supporting Tables
 
@@ -122,7 +130,7 @@ Path: `data/validity_checks/`
   - Query-bucket sensitivity table retained because the JCDL paper scopes the repository snapshot as query-based.
 
 - `data/audit_support/hf_repo_artifact_typing_precision.csv`
-  - Balanced artifact-role audit table used for Figure 2 panel (b).
+  - Balanced artifact-role audit input to `fig2_metadata_completeness`.
 
 ## Denominators
 

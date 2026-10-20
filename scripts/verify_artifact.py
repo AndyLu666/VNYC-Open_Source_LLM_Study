@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sanity checks for the review artifact."""
+"""Verify the released research files and analysis-table record counts."""
 
 from __future__ import annotations
 
@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FILES = [
     "README.md",
+    "LICENSE",
+    "CITATION.cff",
+    "THIRD_PARTY_NOTICES.md",
     "requirements.txt",
     "docs/DATA_DICTIONARY.md",
     "docs/CODING_GUIDE.md",
@@ -49,6 +52,7 @@ FORBIDDEN_TEXT = [
 ]
 TEXT_SUFFIXES = {
     ".bib",
+    ".cff",
     ".cls",
     ".csv",
     ".md",
@@ -56,7 +60,8 @@ TEXT_SUFFIXES = {
     ".tex",
     ".txt",
 }
-IGNORED_DIRS = {".git", ".venv", "__pycache__"}
+IGNORED_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache"}
+GENERATED_DIRS = {"paper"}
 IGNORED_SUFFIXES = {".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".synctex.gz"}
 MANIFEST = ROOT / "MANIFEST.csv"
 
@@ -83,11 +88,16 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def is_local_output(path: Path) -> bool:
+    parts = path.relative_to(ROOT).parts
+    return any(part in IGNORED_DIRS for part in parts) or parts[0] in GENERATED_DIRS
+
+
 def should_manifest(path: Path) -> bool:
     rel = path.relative_to(ROOT).as_posix()
     if path == MANIFEST:
         return False
-    if any(part in IGNORED_DIRS for part in path.relative_to(ROOT).parts):
+    if is_local_output(path):
         return False
     if path.name == ".DS_Store":
         return False
@@ -151,6 +161,8 @@ def main() -> int:
 
     for path in ROOT.rglob("*"):
         rel = path.relative_to(ROOT).as_posix()
+        if is_local_output(path):
+            continue
         if any(part in FORBIDDEN_NAMES for part in path.parts):
             errors.append(f"forbidden file name present: {rel}")
         if path.is_file() and is_text_file(path):
@@ -172,7 +184,7 @@ def main() -> int:
         return 1
 
     print("Artifact verification passed.")
-    print("Checked required files, key row counts, manifest checksums, and common anonymization markers.")
+    print("Checked required files, key row counts, manifest checksums, and local-path/placeholder markers.")
     for rel, expected in EXPECTED_ROWS.items():
         print(f"- {rel}: {expected:,} rows")
     return 0

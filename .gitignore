@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv/
+.pytest_cache/
+paper/
 *.aux
 *.bbl
 *.blg
